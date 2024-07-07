@@ -76,45 +76,55 @@ def start_game():
 
   # storing the random number as a Constant, as it remain
   RANDOM_NUMBER = random.randint(1, 10)
-  #list of players
-  players = []
-  # ask for a username to be used 
-  user_name = input('Please enter your name for the game >>:')
+ 
+  
+  # ask for a username to be used and adding unicode emoji as in the list deletion video
+  user_name = input('Please enter your name for the game \u25B6:')
   #adding some 
   time.sleep(3)
-  #appending player's name to the players list
-  players.append(user_name)
+
+ 
   #initializing rounds  variable to count how many rounds a user has played.
   total_rounds = 0
-  #empty
+  attempts= 0
  
-  attempts = 0
+ #initalizing the number of attempts with one 
+ 
 
+  #every player starts with 1000 "possible points" to be won each time
   initial_points = 1000
-  score = 0
-  total_score = 0
-  previous_score = 0
+  attempts = 0
+  total_attempts = []
+  total_score=[]
+  sum_of_scores=[]
+  
 
-  # while RANDOM_NUMBER:
-  while True:
+  #  ask continuously for a number
+  ## start a while loop to continuously ask for the number
+  while True:   
+    
     try:
-      # ask continuously for a number
-      player_number = int(
-          input(f'{user_name.title()},Please take a guess at the secret number >>:'))
-      print(players)
-      print(total_score)
+     
+      player_number = int(input(f'{user_name.title()},Please take a guess at the secret number >>:'))
+      ##initalizing an attempts  variable to 1, since they are already trying to guess a number
+      
+      #initalizing the score
+      score = 0
+    
+      #adding some  delay for cognitive load 
       time.sleep(1)
-      # raise exceptions
-      # if number is less or equal to zero
+      
+      # raise exceptions and informing the user in text and visually using unicode
+      ## if number is less or equal to zero
       if player_number <= 0:
-        attempts+=1
+        attempts += 1
         raise Exception('The number must be higher than 0 \N{cross mark}')
   
       # if number is higher than 10
       elif player_number > 10:
         attempts+=1
         raise Exception('Number cannot be higher than 10 \N{cross mark}')
-    # handle exception of user entering floats or entering the number spelled-out
+    # handle exception of user entering floats or entering the number spelled-out, i.e Value Errors
     except ValueError:
       attempts+=1
       print(
@@ -122,17 +132,22 @@ def start_game():
     except Exception as e:
       # printing
       print(e)
-      # player_number=
+   #using the else statement to keep running the program once exceptions are raised and handled
     else:
+      #if number is lower, user will see a message saying "it's lower " and an arrow prompting them to 
       if player_number > RANDOM_NUMBER:
-        print('It\'s lower\u23EB')
+        
+        print('It\'s lower\u23EC')
         attempts += 1
+      #else if the number is lower  
       elif player_number < RANDOM_NUMBER:
-        print('It\'s higher \u23EC')
+        print('It\'s higher \u23EB')
         attempts += 1
+      #once the number is guessed properly.  
       else:
+        attempts+=1
         print(f"\u1534 You got it,{user_name}, it took you {
-              attempts} attempts to discover it")
+             attempts,attempts*'\u2B55'} attempts to discover it")
 
         if attempts == 1:
           score = initial_points
@@ -144,9 +159,16 @@ def start_game():
         if play_again.lower() == 'yes' or play_again.lower() == 'y':
           # store the previous user
           user_name = user_name
-          score += score
+          total_score=[]
+          total_score.append(score)
+          print(f'The game is over, your score for this round is {sum(total_score)} ')
+          
+          
+          total_attempts.append(attempts)
+          sum_of_attempts=sum(total_attempts)
+          print('this is the sum of all attempts',sum_of_attempts*'\u2B55')
           total_rounds += 1
-          print(f'This is the number of total rounds so far:{total_rounds-1}')
+          print(f'This is the number of total rounds so far:{total_rounds}')
           # start_game()
           continue
 
