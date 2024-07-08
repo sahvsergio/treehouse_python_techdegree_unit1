@@ -71,48 +71,37 @@ def start_game():
   print()
   # print instructions
   print(instructions)
-  #empty print statements for spacing 
   print()
   print()
 
   # storing the random number as a Constant, as it remain
-  random_number = random.randint(1, 10)
-  #rint(RANDOM_NUMBER)
+  RANDOM_NUMBER = random.randint(1, 10)
 
-  # ask for a username to be used and adding unicode emoji of an arrow  as in the list deletion class for fajitas
+  # ask for a username to be used and adding unicode emoji as in the list deletion video
   user_name = input('Please enter your name for the game \u25B6:')
-  # adding some delay
+  # adding some
   time.sleep(3)
-  print()
-  print()
 
-  # initializing  total rounds  variable to  keep track of how many times a single player plays the game 
-  #
+  # initializing rounds  variable to count how many rounds a user has played.
   total_rounds = 0
 
- # initial settings of current score with a list
+ # initial settings of total_rounds = 0 the game
   current_score = []
-  # every player starts with 1000 "possible points" to be won each time
   initial_points = 1000
-  #Attempts  variables
-  #list of  total attempts to keep log of overall attempts from turn to turn
   accrued_attempts = []
-
-  #how many attempts per one turn?
   current_attempts = 0
-  
+  # every player starts with 1000 "possible points" to be won each time
+
   #  ask continuously for a number
 
   # start a while loop to continuously ask for the number
   while True:
-    
+
     try:
-      #prompting the user for a number
-      
-      player_number = int(input(f'{user_name.title()},Please take a guess at the secret number >>:'))
-      print()
-      print()
-     
+
+      player_number = int(
+          input(f'{user_name.title()},Please take a guess at the secret number >>:'))
+      # initalizing an attempts  variable to 1, since they are already trying to guess a number
 
       # initalizing the score
       score = 0
@@ -141,12 +130,12 @@ def start_game():
    # using the else statement to keep running the program once exceptions are raised and handled
     else:
       # if number is lower, user will see a message saying "it's lower " and an arrow prompting them to
-      if player_number > random_number:
+      if player_number > RANDOM_NUMBER:
 
         print('It\'s lower\u23EC')
         current_attempts += 1
       # else if the number is lower
-      elif player_number < random_number:
+      elif player_number < RANDOM_NUMBER:
         print('It\'s higher \u23EB')
         current_attempts += 1
 
@@ -157,7 +146,8 @@ def start_game():
 
         # informing the player they have won and how many attempts it took them  using numbers and unicode
 
-        print(f"\u1534 You got it,{user_name}, it took you {current_attempts} attempts  to discover it on this round", current_attempts*'\u2B55')
+        print(f"\u1534 You got it,{user_name}, it took you {
+              current_attempts, current_attempts*'\u2B55'} attempts to discover it on this round")
       # setting scores based on # of attempts
         if current_attempts == 1:
           # the user gets full initial possible points
@@ -167,11 +157,7 @@ def start_game():
           score = initial_points-(current_attempts*10)
           print(f'The game is over, your score for this round is {score} ')
           accrued_attempts.append(current_attempts)
-          sum_attempts = sum(accrued_attempts)
-          
-          print(sum_attempts)
-          total_rounds += 1
-          
+          print(accrued_attempts)
 
         # the player is asking if they want to play again
         play_again = input('Would you like to play again? ')
@@ -179,34 +165,25 @@ def start_game():
         if play_again.lower() == 'yes' or play_again.lower() == 'y':
           # store the previous user
           user_name = user_name
-          random_number = random.randint(1, 10)
+
+          print(f'This is the total sum of attempts {
+                sum(accrued_attempts)} so far in rounds{total_rounds}')
           current_attempts = 0
 
           current_score.append(score)
-          print(50*'*')
-          print(f'|Your score for the previous  round was: {(score)}',' '*7 )
-          print(50*'_')
-          print('|Your current total score for all rounds is:', sum(current_score),-1*'|')
-          print(50*'_')
-          sum_of_scores=sum(current_score)
-         
-          max_scores=max(current_score)
-          print('|','This is the total of  rounds played: ',total_rounds,' '*6,'|' )
-          print(50*'_')
-          print('|','This is the total attempts in all rounds:',sum_attempts,''*4,'|')
-          print(50*'*')
+          print('this is the current score', sum(current_score))
 
           # prints the score for the round
-                   
+          print(
+              f'The round has ended , your score for this round is {(score)} ')
+
+          total_rounds += 1
           continue
 
         # else
         elif play_again.lower() == 'no' or play_again.lower() == 'n':
-          
-          print(f'this is the number of total rounds:{total_rounds} by {user_name}')
-        
-          print('total score of',sum(current_score))
-          print(f'your best round had {min(accrued_attempts)} attempts and a maximum score of {max(current_score)}')
+          print(f'this is the number of total rounds:{total_rounds} by{user_name} with a total score of {sum(
+              current_score)} your best round had {min(accrued_attempts)} attempts and a maximum score of {max(current_score)}')
 
           print(f'Hope to see you again {user_name} \N{GRINNING FACE}')
 
@@ -215,7 +192,6 @@ def start_game():
           if new_user.lower() == 'y' or new_user.lower() == 'yes':
             start_game()
           elif new_user.lower() == 'n' or new_user.lower() == 'no':
-            print('Good Bye, Players. Until we meet again!')
             break
 
           # sys.exit()

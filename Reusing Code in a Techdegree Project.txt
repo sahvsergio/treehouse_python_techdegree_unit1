@@ -1,0 +1,36 @@
+
+Instruction
+Reusing Code in a Techdegree Project
+
+The Techdegree projects are one of the most valuable learning experiences in the Techdegree. The projects let you create your own portfolio and demonstrate your programming skills. But, more importantly, by building the projects yourself, you learn how to apply what you're learning in new ways and in a real-world project — this is the best way to learn.
+
+Unfortunately, it isn't always clear when you can use the code you've found online. We understand that there’s open-source code to help you. And, we know that even pros use Google to find answers on sites like StackOverflow to help them with programming problems. So, to help you understand what’s OK and not OK to do when building your Techdegree projects, we’ve put together this simple set of guidelines:
+What's OK to do:
+
+    Open-source libraries, frameworks, and modules. If the project grading requirements let you use an open-source library, framework, or module, then you’re free to include that code in your project.
+    Google and use small code snippets from other sites … with attribution. You may get stuck on some small part of the project and find an answer using Google or listed on StackOverflow. If you end up using code you see online, provide basic attribution for the code: identify the code you found, where you found it, and, if you know who wrote it, give them credit. You can do this by adding a one-line comment just above the snippet that provides a link to the web page where you found the code:
+
+An example in HTML:
+
+<!-- menu from https://gist.github.com/jwmalara/11190014 -->
+
+An example in Python
+
+# code adapted from https://realpython.com/decorators/
+
+
+What's NOT OK to do:
+
+    Take another student’s project and submit it as your own. This is just cheating: it's called plagiarism and is a breach of the Techdegree Code of Conduct.
+    Take another student’s project, modify small parts of it, and submit it as your own. Just removing or adding comments, or making small changes to an application's look and feel is still cheating.
+    Take another student’s project, re-write their code, and submit it as your own. Starting with a finished project isn’t going to challenge your problem-solving and programming skills. Most of the projects ask you to solve a problem from the very beginning: that includes thinking about how you will structure your program or app, how you’ll program the solution, and then doing it.
+
+How you can succeed:
+
+    Don’t look at other examples of the project you are currently working on. When you are struggling to complete a project, it can be really tempting to just find a completed example of the project created by another student. It’s also tempting to then just use their solution. You’ll learn the most by figuring out how to implement the project on your own.
+    Seek assistance in Slack from Treehouse Staff, Slack Moderators, Slack Champions, and other students. Each project has its own Slack channel where you can ask questions about the project. Jump in there and ask your questions — and don’t be afraid. We’re all here to help each other succeed, and no question is a “dumb” question.
+    Use a project study guide to help you get started. Most of the projects have additional help — a “study guide” that you’ll find linked to from the project instruction page. These guides include helpful tips for tackling the project, links to videos to help you with some of the more challenging parts, and general advice for completing the project.
+
+Academic Honesty
+
+You can read the Treehouse Terms & Conditions for more information on the Techdegree Code of Conduct and our expectations for Academic Honesty. We reserve the right to terminate, without refund, those students found breaking this code of conduct.
