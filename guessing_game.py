@@ -64,7 +64,7 @@ def start_game():
     # adding delay with time so that the words show  slowly on the screen for practice
     time.sleep(1)
 
-  ### creating the lower part of the box
+  ### creating the lower part of the box by multiplying a string
   print(30*'*')
   #spacing out 
   print()
@@ -86,20 +86,18 @@ def start_game():
  
   #initializing rounds  variable to count how many rounds a user has played.
   total_rounds = 0
-  attempts= 0
- 
- #initalizing the number of attempts with one 
- 
-
-  #every player starts with 1000 "possible points" to be won each time
-  initial_points = 1000
-  attempts = 0
-  total_attempts = []
-  total_score=[]
-  sum_of_scores=[]
+  
   
 
+ # initial settings of total_rounds = 0 the game
+  current_score = []
+  initial_points = 1000
+  accrued_attempts=[]
+  current_attempts = 0
+  #every player starts with 1000 "possible points" to be won each time
+
   #  ask continuously for a number
+  
   ## start a while loop to continuously ask for the number
   while True:   
     
@@ -117,16 +115,16 @@ def start_game():
       # raise exceptions and informing the user in text and visually using unicode
       ## if number is less or equal to zero
       if player_number <= 0:
-        attempts += 1
+        current_attempts += 1
         raise Exception('The number must be higher than 0 \N{cross mark}')
   
       # if number is higher than 10
       elif player_number > 10:
-        attempts+=1
+        current_attempts+=1
         raise Exception('Number cannot be higher than 10 \N{cross mark}')
     # handle exception of user entering floats or entering the number spelled-out, i.e Value Errors
     except ValueError:
-      attempts+=1
+      current_attempts+=1
       print(
           f'please enter a valid number, no letter, no decimals \N{cross mark}')
     except Exception as e:
@@ -138,45 +136,64 @@ def start_game():
       if player_number > RANDOM_NUMBER:
         
         print('It\'s lower\u23EC')
-        attempts += 1
+        current_attempts += 1
       #else if the number is lower  
       elif player_number < RANDOM_NUMBER:
         print('It\'s higher \u23EB')
-        attempts += 1
-      #once the number is guessed properly.  
+        current_attempts += 1
+      
       else:
-        attempts+=1
-        print(f"\u1534 You got it,{user_name}, it took you {
-             attempts,attempts*'\u2B55'} attempts to discover it")
-
-        if attempts == 1:
+        # once the number is guessed properly.
+        ##adding it to the list of attempts
+        current_attempts+=1
+        
+        # informing the player they have won and how many attempts it took them  using numbers and unicode
+        
+        print(f"\u1534 You got it,{user_name}, it took you {current_attempts,current_attempts*'\u2B55'} attempts to discover it on this round")
+      #setting scores based on # of attempts
+        if current_attempts== 1:
+          ## the user gets full initial possible points  
           score = initial_points
         else:
-          score = initial_points-(attempts*10)
-        print(f'The game is over, your score for this round is {score} ')
+          #else we multiply the  number of attempts by 10 and then substract the result from the inital points
+          score = initial_points-(current_attempts*10)
+          print(f'The game is over, your score for this round is {score} ')
+          accrued_attempts.append(current_attempts)
+          print(accrued_attempts)
+          
+          
+        #the player is asking if they want to play again  
         play_again = input('Would you like to play again? ')
-
+        #if yes
         if play_again.lower() == 'yes' or play_again.lower() == 'y':
           # store the previous user
           user_name = user_name
-          total_score=[]
-          total_score.append(score)
-          print(f'The game is over, your score for this round is {sum(total_score)} ')
           
+          print(f'This is the total sum of attempts {sum(accrued_attempts)} so far in rounds{total_rounds}')
+          current_attempts = 0
+         
           
-          total_attempts.append(attempts)
-          sum_of_attempts=sum(total_attempts)
-          print('this is the sum of all attempts',sum_of_attempts*'\u2B55')
-          total_rounds += 1
-          print(f'This is the number of total rounds so far:{total_rounds}')
-          # start_game()
+          current_score.append(score)
+          print('this is the current score',sum(current_score))
+          
+         
+          
+          #prints the score for the round
+          print(f'The round has ended , your score for this round is {(score)} ')      
+          
+        
+          total_rounds += 1          
           continue
 
+        
+        #else
         elif play_again.lower() == 'no' or play_again.lower() == 'n':
-          print(f'this is the number of total rounds:{
-                total_rounds} by{user_name}')
-
+          print(f'this is the number of total rounds:{total_rounds} by{user_name} with a total score of {sum(current_score)} your best round had {min(accrued_attempts)} attempts and a maximum score of {max(current_score)}')
+          
           print(f'Hope to see you again {user_name} \N{GRINNING FACE}')
+
+
+          #askk if there is any other playing
           new_user = input('Is there another person playing?')
           if new_user.lower() == 'y' or new_user.lower() == 'yes':
             start_game()
