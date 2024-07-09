@@ -4,9 +4,8 @@ Project 1 - The Number Guessing Game
 --------------------------------
 """
 
-import csv
 import random
-import sys
+
 import time
 
 # Import the random module.
@@ -43,44 +42,49 @@ def start_game():
   # splitting the string into  a list of words
   welcoming_words = welcoming_message.split()
   # printing 30 "*" as the top line of a box
-  print(30*'*')
-
-  # looping through the words list
+  print(171*' ',30*'*')
+  #looping to create box  in order to 
   for word in welcoming_words:
-    # creating the sides of the decorating box and adjusting spaces on the right based on  the length of words
-    if len(word) == 2:
-      print('*', ' '*10, word, ' '*(len(word)+10), '*')
+     if len(word) == 2:
+       print(' '*171, '*', word, ' '*(len(word)+21), '*')
+     if len(word) == 3:
+       print(' '*171, '*', word, ' '*(len(word)+19), '*')
+     if len(word) == 4:
+       print(' '*171, '*', word, ' '*(len(word)+17), '*')
+     if len(word) == 7:
+       print(' '*171, '*', word, ' '*(len(word)+11), '*')
+     if len(word) == 8:
+       print(' '*171, '*', word, ' '*(len(word)+9), '*')
+     time.sleep(1)
+     
 
-    if len(word) == 3:
-      print('*', ' '*10, word, ' '*(len(word)+8), '*')
-    if len(word) == 4:
-
-      print('*', ' '*10, word, ' '*(len(word)+6), '*')
-
-    if len(word) == 7:
-      print('*', ' '*10, word, ' '*len(word), '*')
-    if len(word) == 8:
-     print('*', ' '*10, word, ' '*(len(word)-2), '*')
-    # adding delay with time so that the words show  slowly on the screen for practice
-    time.sleep(1)
-
-  # creating the lower part of the box by multiplying a string
-  print(30*'*')
+  #creating the lower part of the box by multiplying a string
+  print(171*' ',30*'*')
+  
+  #spacing out 
+  print()
+  print()
   # spacing out
-  print()
-  print()
-  # print instructions
+  instructions="""
+              The idea behind the game is
+              to guess the randomly generated number which is i the range of 1-10. 
+              Feedback will be provided in the form of 
+              a message saying: it is higher or it is lower,
+              prompting you for a new guess
+              or telling you if there is an invalid input, such as letters,
+              decimals, negative numbers or number out of the range""".center(180)
   print(instructions)
+  #print(instructions.center(127))
   #empty print statements for spacing 
   print()
   print()
 
   # storing the random number as a Constant, as it remain
   random_number = random.randint(1, 10)
-  #rint(RANDOM_NUMBER)
+  print(random_number)
 
   # ask for a username to be used and adding unicode emoji of an arrow  as in the list deletion class for fajitas
-  user_name = input('Please enter your name for the game \u25B6:')
+  user_name = input('Please enter your name for the game \u25B6:'.center(70))
   # adding some delay
   time.sleep(3)
   print()
@@ -101,15 +105,15 @@ def start_game():
   #how many attempts per one turn?
   current_attempts = 0
   
-  #  ask continuously for a number
+  #  
 
-  # start a while loop to continuously ask for the number
+  # start a while loop to continuously ask for the number continuously  
   while True:
-    
+        
     try:
-      #prompting the user for a number
+      #prompting the user for a number anc centering the print statement with .center()
       
-      player_number = int(input(f'{user_name.title()},Please take a guess at the secret number >>:'))
+      player_number = int(input(f'{user_name.title()},Please take a guess at the secret number >>:'.center(80)))
       print()
       print()
      
@@ -124,17 +128,19 @@ def start_game():
       # if number is less or equal to zero
       if player_number <= 0:
         current_attempts += 1
-        raise Exception('The number must be higher than 0 \N{cross mark}')
+        raise Exception('The number must be higher than 0 \N{cross mark}'.center(127))
 
       # if number is higher than 10
       elif player_number > 10:
         current_attempts += 1
-        raise Exception('Number cannot be higher than 10 \N{cross mark}')
+        raise Exception('Number cannot be higher than 10 \N{cross mark}'.center(127))
+      
     # handle exception of user entering floats or entering the number spelled-out, i.e Value Errors
+    
     except ValueError:
       current_attempts += 1
       print(
-          f'please enter a valid number, no letter, no decimals \N{cross mark}')
+          f'please enter a valid number, no letter, no decimals \N{cross mark}'.center(127))
     except Exception as e:
       # printing
       print(e)
@@ -143,11 +149,11 @@ def start_game():
       # if number is lower, user will see a message saying "it's lower " and an arrow prompting them to
       if player_number > random_number:
 
-        print('It\'s lower\u23EC')
+        print('It\'s lower\u23EC'.center(127))
         current_attempts += 1
       # else if the number is lower
       elif player_number < random_number:
-        print('It\'s higher \u23EB')
+        print('It\'s higher \u23EB'.center(127))
         current_attempts += 1
 
       else:
@@ -156,33 +162,41 @@ def start_game():
         current_attempts += 1
 
         # informing the player they have won and how many attempts it took them  using numbers and unicode
-
-        print(f"\u1534 You got it,{user_name}, it took you {current_attempts} attempts  to discover it on this round", current_attempts*'\u2B55')
+        print(100*'*')
+        print(f" You got it,{user_name.title()}, it took you {current_attempts} attempts  to discover it on this round", current_attempts*'\u2B55')
       # setting scores based on # of attempts
         if current_attempts == 1:
           # the user gets full initial possible points
           score = initial_points
+          
         else:
-          # else we multiply the  number of attempts by 10 and then substract the result from the inital points
+          # else  attempts are more than 1 , we multiply the  number of attempts by 10 and then substract the result from the inital points
           score = initial_points-(current_attempts*10)
           print(f'The game is over, your score for this round is {score} ')
+          #added the current value of current attempts to the accrued(accummulated) attempts for all rounds
           accrued_attempts.append(current_attempts)
+          #we add all the elements fo the accreed_attempts to get the complete attempts in all turns
           sum_attempts = sum(accrued_attempts)
-          
-          print(sum_attempts)
+
+          #increase the total turns or rounds in 1 after it 
           total_rounds += 1
           
 
-        # the player is asking if they want to play again
+        # the player is asked if they want to play again
         play_again = input('Would you like to play again? ')
         # if yes
+        #turn whatever input into lower case for better comparison and provide 2 options  yes or y
         if play_again.lower() == 'yes' or play_again.lower() == 'y':
           # store the previous user
           user_name = user_name
+          #make sure that the new random number 
           random_number = random.randint(1, 10)
+          #reinitating  attempt variables for each turn
           current_attempts = 0
+          
 
           current_score.append(score)
+          #a summary of their performace is printed
           print(50*'*')
           print(f'|Your score for the previous  round was: {(score)}',' '*7 )
           print(50*'_')
@@ -195,26 +209,62 @@ def start_game():
           print(50*'_')
           print('|','This is the total attempts in all rounds:',sum_attempts,''*4,'|')
           print(50*'*')
+          print()
+          
 
           # prints the score for the round
                    
           continue
 
-        # else
-        elif play_again.lower() == 'no' or play_again.lower() == 'n':
-          
-          print(f'this is the number of total rounds:{total_rounds} by {user_name}')
         
+        #if the player does not want to play again
+
+        # we turn the input into lowercase for comparison and have 2 options 'no' or n 
+        elif play_again.lower() == 'no' or play_again.lower() == 'n':
+          #prnting 
+          print()
+          print()
+          print(50*'*')   
+          print(f'this is the number of total rounds:{total_rounds} by {user_name}')
+          
+          print(50*'*')
+               
+          
           print('total score of',sum(current_score))
+          
+          
+        
+          
+          print(50*'*')
           print(f'your best round had {min(accrued_attempts)} attempts and a maximum score of {max(current_score)}')
+          
+          print(50*'*')
+
+          
+
+          print(50*'*')
+
+          print()
+          print()
+          
 
           print(f'Hope to see you again {user_name} \N{GRINNING FACE}')
+          print(50*'*')
+          print()
+          print()
 
-          # askk if there is any other playing
+          # offer to have someone else playing-perhaps a friend sitting next to them taking turns
           new_user = input('Is there another person playing?')
+          #compare the response
+          #if yes
           if new_user.lower() == 'y' or new_user.lower() == 'yes':
+            #start the game fresh
             start_game()
+          #if not
           elif new_user.lower() == 'n' or new_user.lower() == 'no':
+            print()
+            print()
+            #print the good bye message and break the game
             print('Good Bye, Players. Until we meet again!')
             break
 
