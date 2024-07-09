@@ -165,6 +165,10 @@ def start_game():
         print(100*'*')
         print(f" You got it,{user_name.title()}, it took you {current_attempts} attempts  to discover it on this round", current_attempts*'\u2B55')
       # setting scores based on # of attempts
+      # added the current value of current attempts to the accrued(accummulated) attempts for all rounds
+        accrued_attempts.append(current_attempts)
+        # we add all the elements fo the accreed_attempts to get the complete attempts in all turns
+        sum_attempts = sum(accrued_attempts)
         if current_attempts == 1:
           # the user gets full initial possible points
           score = initial_points
@@ -173,13 +177,11 @@ def start_game():
           # else  attempts are more than 1 , we multiply the  number of attempts by 10 and then substract the result from the inital points
           score = initial_points-(current_attempts*10)
           print(f'The game is over, your score for this round is {score} ')
-          #added the current value of current attempts to the accrued(accummulated) attempts for all rounds
-          accrued_attempts.append(current_attempts)
-          #we add all the elements fo the accreed_attempts to get the complete attempts in all turns
-          sum_attempts = sum(accrued_attempts)
+          
 
           #increase the total turns or rounds in 1 after it 
-          total_rounds += 1
+        total_rounds += 1
+        current_score.append(score)
           
 
         # the player is asked if they want to play again
@@ -195,7 +197,7 @@ def start_game():
           current_attempts = 0
           
 
-          current_score.append(score)
+          
           #a summary of their performace is printed
           print(50*'*')
           print(f'|Your score for the previous  round was: {(score)}',' '*7 )
