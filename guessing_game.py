@@ -91,7 +91,7 @@ def start_game():
 
   # storing the random number as a Constant, as it remain
   random_number = random.randint(1, 10)
-  print(random_number)
+  
 
   # ask for a username to be used and adding unicode emoji of an arrow  as in the list deletion class for fajitas
   user_name = input('Please enter your name for the game \u25B6:'.center(70))
