@@ -5,7 +5,7 @@ Project 1 - The Number Guessing Game
 """
 
 import random
-
+import sys
 import time
 
 # Import the random module.
@@ -29,14 +29,17 @@ import time
 
 
 # Kick off the program by calling the start_game function.
-
+high_score=1000000000
 
 def start_game():
-
+  
+  global high_score
+  
   # creating the header of the game
 
   # creating the  intro messages
   welcoming_message = """Welcome to the number guessing game"""
+  
   instructions = 'The idea of the game is guessing  a number between 1 and 10'
 
   # splitting the string into  a list of words
@@ -55,10 +58,17 @@ def start_game():
        print(' '*171, '*', word, ' '*(len(word)+11), '*')
      if len(word) == 8:
        print(' '*171, '*', word, ' '*(len(word)+9), '*')
-     time.sleep(1)
-     
 
+      
+     time.sleep(1)
+
+     
+     
+  print()
+  print()
   #creating the lower part of the box by multiplying a string
+  #printing the highscore at the top
+  print(f'Current HighScore: {high_score}'.center(127))
   print(171*' ',30*'*')
   
   #spacing out 
@@ -97,18 +107,20 @@ def start_game():
  # initial settings of current score with a list
   current_score = []
   # every player starts with 1000 "possible points" to be won each time
-  initial_points = 1000
+  initial_points = 1000000
   #Attempts  variables
   #list of  total attempts to keep log of overall attempts from turn to turn
   accrued_attempts = []
 
   #how many attempts per one turn?
+  
   current_attempts = 0
   
   #  
 
   # start a while loop to continuously ask for the number continuously  
   while True:
+    
         
     try:
       #prompting the user for a number anc centering the print statement with .center()
@@ -116,10 +128,11 @@ def start_game():
       player_number = int(input(f'{user_name.title()},Please take a guess at the secret number >>:'.center(80)))
       print()
       print()
-     
+       
 
       # initalizing the score
       score = 0
+      
 
       # adding some  delay for cognitive load
       time.sleep(1)
@@ -212,6 +225,9 @@ def start_game():
           print('|','This is the total attempts in all rounds:',sum_attempts,''*4,'|')
           print(50*'*')
           print()
+          if sum_of_scores>high_score:
+            high_score=max_scores
+            print(f'New hi-score achieved by {user_name}:{high_score}')
           
 
           # prints the score for the round
@@ -222,8 +238,10 @@ def start_game():
         #if the player does not want to play again
 
         # we turn the input into lowercase for comparison and have 2 options 'no' or n 
-        elif play_again.lower() == 'no' or play_again.lower() == 'n':
+        else:
+          #play_again.lower() == 'no' or play_again.lower() == 'n':
           #prnting 
+          user_name=''
           print()
           print()
           print(50*'*')   
@@ -239,6 +257,11 @@ def start_game():
           
           print(50*'*')
           print(f'your best round had {min(accrued_attempts)} attempts and a maximum score of {max(current_score)}')
+          if sum_of_scores>high_score:
+            high_score=max(current_score)
+            print()
+            print()
+            print(f'New Hi-Score achieved by {user_name}: {high_score}') 
           
           print(50*'*')
 
@@ -263,12 +286,13 @@ def start_game():
             #start the game fresh
             start_game()
           #if not
-          elif new_user.lower() == 'n' or new_user.lower() == 'no':
+          else:
+            #new_user.lower() == 'n' or new_user.lower() == 'no':
             print()
             print()
             #print the good bye message and break the game
             print('Good Bye, Players. Until we meet again!')
-            break
+            sys.exit()
 
           # sys.exit()
          # continue: hops to the start of the loop Break: hops OUT of the loop to the next piece of code
