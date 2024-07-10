@@ -69,6 +69,7 @@ def start_game():
   #creating the lower part of the box by multiplying a string
   #printing the highscore at the top
   print(f'Current HighScore: {high_score}'.center(127))
+  time.sleep(3)
   print(171*' ',30*'*')
   
   #spacing out 
@@ -229,11 +230,10 @@ def start_game():
           if sum_of_scores>high_score:
             high_score=max_scores
             print(f'New hi-score achieved by {user_name}:{high_score}')
-          
-
-          # prints the score for the round
-                   
-          continue
+            # prints the score for the round
+            continue
+          else:
+            print(f'Hi-Score is {high_score}'.center(127))
 
         
         #if the player does not want to play again
@@ -262,7 +262,7 @@ def start_game():
             high_score=max(current_score)
             print()
             print()
-            print(f'New Hi-Score achieved by {user_name}: {high_score}') 
+            print(f'New Hi-Score achieved by {user_name}: {high_score}'.center(127)) 
           
           print(50*'*')
 
