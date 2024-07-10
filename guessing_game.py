@@ -218,6 +218,7 @@ def start_game():
           print(f'|Your score for the previous  round was: {(score)}',' '*7 )
           print(50*'_')
           print('|Your current total score for all rounds is:', sum(current_score),-1*'|')
+          print('The hi-score for the game is ',high_score)
           print(50*'_')
           #sum_of_scores=sum(current_score)
          
@@ -234,6 +235,8 @@ def start_game():
             continue
           else:
             print(f'Hi-Score is {high_score}'.center(127))
+            print()
+            print()
 
         
         #if the player does not want to play again
