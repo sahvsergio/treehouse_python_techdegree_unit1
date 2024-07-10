@@ -1,0 +1,20 @@
+"" 
+  # looping through the words list
+  for word in welcoming_words:
+    # creating the sides of the decorating box and adjusting spaces on the right based on  the length of words
+    if len(word) == 2:
+      print('*', ' '*10, word.center(127), ' '*(len(word)+10), '*')
+
+    if len(word) == 3:
+      print('*', ' '*10, word.center(127), ' '*(len(word)+8), '*')
+    if len(word) == 4:
+
+      print('*', ' '*10, word.center(127), ' '*(len(word)+6), '*')
+
+    if len(word) == 7:
+      print('*', ' '*10, word.center(127), ' '*len(word), '*')
+    if len(word) == 8:
+     print('*', ' '*10, word.center(127), ' '*(len(word)-2), '*')
+    # adding delay with time so that the words show  slowly on the screen for practice
+    time.sleep(1)
+ """

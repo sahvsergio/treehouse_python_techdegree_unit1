@@ -199,6 +199,7 @@ def start_game():
 
         # the player is asked if they want to play again
         play_again = input('Would you like to play again? ')
+        sum_of_scores = sum(current_score)
         # if yes
         #turn whatever input into lower case for better comparison and provide 2 options  yes or y
         if play_again.lower() == 'yes' or play_again.lower() == 'y':
@@ -217,7 +218,7 @@ def start_game():
           print(50*'_')
           print('|Your current total score for all rounds is:', sum(current_score),-1*'|')
           print(50*'_')
-          sum_of_scores=sum(current_score)
+          #sum_of_scores=sum(current_score)
          
           max_scores=max(current_score)
           print('|','This is the total of  rounds played: ',total_rounds,' '*6,'|' )
