@@ -278,6 +278,7 @@ def start_game():
           
 
           print(f'Hope to see you again {user_name} \N{GRINNING FACE}')
+          print('Please remember our hi-score: ',high_score)
           print(50*'*')
           print()
           print()
@@ -296,6 +297,7 @@ def start_game():
             print()
             #print the good bye message and break the game
             print('Good Bye, Players. Until we meet again!')
+            print('Remember our hi-score : ',high_score)
             sys.exit()
 
           # sys.exit()
